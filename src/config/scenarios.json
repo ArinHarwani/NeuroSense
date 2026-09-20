@@ -1,4 +1,20 @@
 {
+  "1111": {
+    "inspector_name": "Senior Inspector",
+    "substance": "No Drugs Found",
+    "category": "Clean Negative Sample · No Narcotic Pattern",
+    "legality": "LEGAL",
+    "confidence_min": 92,
+    "confidence_max": 99,
+    "gas_profile": {
+      "mq135": 0.12,
+      "mq3": 0.05,
+      "mq138": 0.08,
+      "bme680_voc": 0.14,
+      "temperature_c": 26.5,
+      "humidity_pct": 45
+    }
+  },
   "1234": {
     "inspector_name": "Inspector A",
     "substance": "Paracetamol",

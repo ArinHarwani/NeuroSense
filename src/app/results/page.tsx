@@ -50,6 +50,10 @@ export default function ResultsPage() {
   }
 
   const isIllegal = result.legality === 'ILLEGAL';
+  const isNoDrugs =
+    result.substance.toLowerCase().includes('no drugs') ||
+    result.substance.toLowerCase().includes('clean') ||
+    result.substance.toLowerCase().includes('negative');
   const formattedDate = new Date(session.createdAt).toLocaleDateString();
   const formattedTime = new Date(session.createdAt).toLocaleTimeString();
 
@@ -82,6 +86,20 @@ export default function ResultsPage() {
                   }}
                 >
                   ILLEGAL VERDICT
+                </span>
+              </>
+            ) : isNoDrugs ? (
+              <>
+                <CheckCircle2 size={20} color="#ffffff" />
+                <span
+                  style={{
+                    fontFamily: 'var(--font-headline)',
+                    fontSize: '18px',
+                    fontWeight: 700,
+                    letterSpacing: '0.08em',
+                  }}
+                >
+                  NEGATIVE · NO DRUGS DETECTED
                 </span>
               </>
             ) : (
@@ -272,7 +290,7 @@ export default function ResultsPage() {
                       letterSpacing: '0.04em',
                     }}
                   >
-                    STATUS: {result.legality}
+                    STATUS: {isNoDrugs ? 'CLEAN / NEGATIVE' : result.legality}
                   </span>
                 </div>
               </div>

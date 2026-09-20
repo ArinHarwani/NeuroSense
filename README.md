@@ -35,6 +35,7 @@ Configured in `src/config/scenarios.json` and abstracted via the swappable `getR
 
 | PIN | Inspector | Displayed Substance | Legality | Confidence Range | Simulated Gas Pattern |
 |:---:|:---|:---|:---:|:---:|:---|
+| **`1111`** | Senior Inspector | No Drugs Found | **LEGAL / CLEAN** | 92–99% | MQ-135: 0.12, MQ-3: 0.05, VOC: 0.14 |
 | **`1234`** | Inspector A | Paracetamol (OTC) | **LEGAL** | 65–80% | MQ-135: 0.42, MQ-3: 0.18, VOC: 0.51 |
 | **`2345`** | Inspector B | Ibuprofen (OTC) | **LEGAL** | 60–75% | MQ-135: 0.38, MQ-3: 0.22, VOC: 0.44 |
 | **`4567`** | Inspector C | Cannabinoid-related pattern | **ILLEGAL** | 55–70% | MQ-135: 0.74, MQ-3: 0.65, VOC: 0.82 |
