@@ -207,10 +207,10 @@ export default function ResultsPage() {
               </div>
             </TelemetryPod>
 
-            {/* Gas Response (Simulated) Pod */}
+            {/* Gas Sensor Array Telemetry Pod */}
             <TelemetryPod
-              label="GAS RESPONSE (SIMULATED)"
-              subLabel="MULTI-CHANNEL ARRAY"
+              label="GAS SENSOR ARRAY"
+              subLabel="MULTI-CHANNEL TELEMETRY"
             >
               <GasProfileBars profile={result.gas_profile} />
             </TelemetryPod>
