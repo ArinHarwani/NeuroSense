@@ -63,6 +63,10 @@ export default function NewTestPage() {
     'PASSCODE_ENTRY' | 'WAITING_OR_CAPTURED' | 'CAMERA_ANALYSIS' | 'ANALYSING' | 'RESULT_READY'
   >('PASSCODE_ENTRY');
 
+  // Hydration fix for dynamic testId
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
+
   useEffect(() => {
     if (testState === 'PASSCODE_ENTRY') {
       setLocalStage('PASSCODE_ENTRY');
@@ -462,9 +466,9 @@ export default function NewTestPage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <ShieldAlert size={20} color="var(--teal)" />
           <div>
-            <div className="test-id-display font-mono">TEST {testId}</div>
+            <div className="test-id-display font-mono">TEST {isMounted ? testId : 'NS-........-XXX'}</div>
             <div className="test-status-sub font-mono">
-              STATUS: {testState} · OFFICER: {officerName || 'INSPECTION OFFICER'}
+              STATUS: {testState} · OFFICER: {isMounted ? (officerName || 'INSPECTION OFFICER') : 'INSPECTION OFFICER'}
             </div>
           </div>
         </div>
@@ -1143,13 +1147,13 @@ export default function NewTestPage() {
           <div className="tactical-modal">
             <div className="card-header" style={{ padding: 0 }}>
               <h2 className="card-title font-headline">SCREENING RECORD DETAILS</h2>
-              <span className="card-tag font-mono">#{testId}</span>
+              <span className="card-tag font-mono">#{isMounted ? testId : 'NS-........-XXX'}</span>
             </div>
 
             <div className="modal-details-list font-mono">
               <div className="detail-item">
                 <span>Test ID:</span>
-                <strong>{testId}</strong>
+                <strong>{isMounted ? testId : 'NS-........-XXX'}</strong>
               </div>
               <div className="detail-item">
                 <span>Classification:</span>
