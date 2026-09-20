@@ -1,0 +1,9 @@
+{
+  "name": "NarcoSense Field Screening Instrument",
+  "short_name": "NarcoSense",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
+  "description": "Tactical Field Operator Web App for Rapid Narcotics Screening"
+}

@@ -1,0 +1,82 @@
+{
+  "1234": {
+    "inspector_name": "Inspector A",
+    "substance": "Paracetamol",
+    "category": "Analgesic / antipyretic (OTC)",
+    "legality": "LEGAL",
+    "confidence_min": 65,
+    "confidence_max": 80,
+    "gas_profile": {
+      "mq135": 0.42,
+      "mq3": 0.18,
+      "mq138": 0.35,
+      "bme680_voc": 0.51,
+      "temperature_c": 27.4,
+      "humidity_pct": 48
+    }
+  },
+  "2345": {
+    "inspector_name": "Inspector B",
+    "substance": "Ibuprofen",
+    "category": "Non-steroidal anti-inflammatory (OTC)",
+    "legality": "LEGAL",
+    "confidence_min": 60,
+    "confidence_max": 75,
+    "gas_profile": {
+      "mq135": 0.38,
+      "mq3": 0.22,
+      "mq138": 0.29,
+      "bme680_voc": 0.44,
+      "temperature_c": 26.8,
+      "humidity_pct": 50
+    }
+  },
+  "4567": {
+    "inspector_name": "Inspector C",
+    "substance": "Cannabinoid-related pattern",
+    "category": "Synthetic cannabinoid analog / Controlled",
+    "legality": "ILLEGAL",
+    "confidence_min": 55,
+    "confidence_max": 70,
+    "gas_profile": {
+      "mq135": 0.74,
+      "mq3": 0.65,
+      "mq138": 0.68,
+      "bme680_voc": 0.82,
+      "temperature_c": 28.1,
+      "humidity_pct": 52
+    }
+  },
+  "5678": {
+    "inspector_name": "Inspector R. Sharma",
+    "substance": "Opioid-related pattern",
+    "category": "Synthetic opioid spectrum / Illicit Schedule I-II",
+    "legality": "ILLEGAL",
+    "confidence_min": 60,
+    "confidence_max": 78,
+    "gas_profile": {
+      "mq135": 0.88,
+      "mq3": 0.79,
+      "mq138": 0.85,
+      "bme680_voc": 0.91,
+      "temperature_c": 27.8,
+      "humidity_pct": 46
+    }
+  },
+  "6789": {
+    "inspector_name": "Inspector D",
+    "substance": "Stimulant-related pattern",
+    "category": "Synthetic stimulant / Controlled substance",
+    "legality": "ILLEGAL",
+    "confidence_min": 58,
+    "confidence_max": 72,
+    "gas_profile": {
+      "mq135": 0.69,
+      "mq3": 0.71,
+      "mq138": 0.77,
+      "bme680_voc": 0.86,
+      "temperature_c": 27.2,
+      "humidity_pct": 49
+    }
+  }
+}
