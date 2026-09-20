@@ -33,8 +33,6 @@ interface TestWorkflowContextType {
   result: DemoResult | null;
   visualMetrics: VisualAnalysisMetrics | null;
   capturedImage: string | null;
-  fastDemo: boolean;
-  toggleFastDemo: () => void;
   startNewTest: () => Promise<string>;
   armTest: () => void;
   enteredPasscode: string;
@@ -75,7 +73,6 @@ export function TestWorkflowProvider({ children }: { children: ReactNode }) {
   const [result, setResult] = useState<DemoResult | null>(null);
   const [visualMetrics, setVisualMetrics] = useState<VisualAnalysisMetrics | null>(null);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
-  const [fastDemo, setFastDemo] = useState<boolean>(false);
 
   // Load Officer and Settings on mount
   useEffect(() => {
@@ -90,7 +87,7 @@ export function TestWorkflowProvider({ children }: { children: ReactNode }) {
     } catch {}
 
     const settings = getAppSettings();
-    setFastDemo(settings.fastDemo);
+    void settings; // settings loaded but fastDemo no longer used
   }, []);
 
   const login = useCallback((name: string, badge = 'NS-OP-01') => {
@@ -131,13 +128,6 @@ export function TestWorkflowProvider({ children }: { children: ReactNode }) {
     },
   });
 
-  const toggleFastDemo = useCallback(() => {
-    setFastDemo((prev) => {
-      const next = !prev;
-      saveAppSettings({ fastDemo: next });
-      return next;
-    });
-  }, []);
 
   // Subscribe to SSE events from server for live remote synchronization
   useEffect(() => {
@@ -422,8 +412,6 @@ export function TestWorkflowProvider({ children }: { children: ReactNode }) {
         result,
         visualMetrics,
         capturedImage,
-        fastDemo,
-        toggleFastDemo,
         startNewTest,
         armTest,
         enteredPasscode,

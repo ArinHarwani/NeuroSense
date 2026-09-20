@@ -4,10 +4,10 @@ import React from 'react';
 import { useTestWorkflow } from '@/context/TestWorkflowContext';
 import { demoResultService } from '@/services/DemoResultService';
 import { DemoResult } from '@/types/narcosense';
-import { Sliders, Zap, Eye, CheckCircle2, AlertOctagon, HelpCircle, ArrowUpRight } from 'lucide-react';
+import { Sliders, Eye, CheckCircle2, AlertOctagon, HelpCircle } from 'lucide-react';
 
 export default function ReferenceProfilesPage() {
-  const { fastDemo, toggleFastDemo, loadResultPreview } = useTestWorkflow();
+  const { loadResultPreview } = useTestWorkflow();
   const scenarios = demoResultService.getAllDemoResults();
 
   const handlePreview = (item: DemoResult) => {
@@ -23,21 +23,10 @@ export default function ReferenceProfilesPage() {
           <div>
             <h1 className="page-title font-headline">REFERENCE PROFILES REGISTRY</h1>
             <p className="page-subtitle">
-              Operational reference profile inspection, calibration data, and rapid mode configuration.
+              Operational reference profile inspection and calibration data.
             </p>
           </div>
         </div>
-
-        {/* Rapid Mode Toggle Button */}
-        <button
-          type="button"
-          onClick={toggleFastDemo}
-          className={`fast-demo-btn ${fastDemo ? 'active' : ''}`}
-          style={{ minHeight: '44px', padding: '0 16px' }}
-        >
-          <Zap size={16} />
-          <span>RAPID TEST MODE: {fastDemo ? 'ENABLED (1-2s)' : 'DISABLED (NORMAL)'}</span>
-        </button>
       </div>
 
       {/* Scenarios Table */}
@@ -126,10 +115,7 @@ export default function ReferenceProfilesPage() {
         </h3>
         <ol style={{ paddingLeft: '20px', color: 'var(--text-2)', fontSize: '13px', lineHeight: '1.8' }}>
           <li>
-            <strong>Standard Flow:</strong> Start a test from the Dashboard, collect breath sample across Gas Sensors 1, 2, and 3, trigger capture via button or phone, complete signal synthesis and optical feature tracking, then input reference code <code>1001</code> (Positive), <code>9999</code> (Negative), or <code>9000</code> (Inconclusive).
-          </li>
-          <li>
-            <strong>Rapid Mode:</strong> Enable Rapid Mode to shorten signal processing and optical analysis to 1–2 seconds for quick field tests.
+            <strong>Standard Flow:</strong> Start a test from the Dashboard, enter the sample passcode, wait 15 seconds for breath/aerosol sample collection, complete optical eye scan, then wait for the 15–20 second AI analysis to complete.
           </li>
           <li>
             <strong>Direct Profile Load:</strong> Click &quot;LOAD PROFILE&quot; above to immediately inspect that pattern profile&apos;s probability distribution.

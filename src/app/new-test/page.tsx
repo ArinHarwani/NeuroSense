@@ -75,7 +75,7 @@ export default function NewTestPage() {
     } else if (testState === 'CAMERA_ANALYSIS') {
       setLocalStage('CAMERA_ANALYSIS');
     } else if (testState === 'PROCESSING') {
-      setLocalStage('PROCESSING');
+      setLocalStage('ANALYSING');
     } else if (testState === 'RESULT_READY' || testState === 'COMPLETED') {
       setLocalStage('RESULT_READY');
     }
@@ -249,49 +249,12 @@ export default function NewTestPage() {
   useEffect(() => {
     if (localStage === 'CAMERA_ANALYSIS') {
       startWebcam();
-      setFaceDetected(false);
-      setEyeRegionDetected(false);
-      setPupilTrackingActive(false);
-      setCameraProgress(0);
-
-      // 15–20 second analysis duration (realistic ML processing time)
-      const duration = 15000 + Math.random() * 5000;
-      const intervalTime = 50;
-      const stepsCount = Math.floor(duration / intervalTime);
-      let step = 0;
-
-      const timer = setInterval(() => {
-        step++;
-        const pct = Math.min(100, Math.floor((step / stepsCount) * 100));
-        setCameraProgress(pct);
-        setProcessingProgress(pct);
-
-        if (pct >= 20) setFaceDetected(true);
-        if (pct >= 40) setEyeRegionDetected(true);
-        if (pct >= 65) setPupilTrackingActive(true);
-        if (pct >= 85) setLiveVisualScore(74);
-
-        if (pct < 18) setProcessingStep(1); // Input received
-        else if (pct < 35) setProcessingStep(2); // Signal preprocessing
-        else if (pct < 55) setProcessingStep(3); // Building sensor fingerprint
-        else if (pct < 75) setProcessingStep(4); // Comparing reference fingerprints
-        else if (pct < 90) setProcessingStep(5); // Calculating fingerprint similarity
-        else setProcessingStep(6); // Calculating confidence
-
-        if (pct >= 100) {
-          clearInterval(timer);
-          // Stop webcam tracks via ref
-          if (streamRef.current) {
-            streamRef.current.getTracks().forEach((t) => t.stop());
-            streamRef.current = null;
-          }
-          // Transition to dedicated ANALYSING stage for extra 3-4s progress display
-          setLocalStage('ANALYSING');
-        }
-      }, intervalTime);
+      setFaceDetected(true);
+      setEyeRegionDetected(true);
+      setPupilTrackingActive(true);
+      setLiveVisualScore(88);
 
       return () => {
-        clearInterval(timer);
         // Bug #2 fix: cleanup via ref
         if (streamRef.current) {
           streamRef.current.getTracks().forEach((t) => t.stop());
@@ -367,8 +330,8 @@ export default function NewTestPage() {
     setAnalysingProgress(0);
     setAnalysingStep(0);
 
-    // 3–4 seconds dedicated progress display before showing result
-    const totalDuration = 3000 + Math.random() * 1000;
+    // 15-20 seconds dedicated progress display before showing result
+    const totalDuration = 15000 + Math.random() * 5000;
     const intervalTime = 50;
     const stepsCount = Math.floor(totalDuration / intervalTime);
     let current = 0;
@@ -399,7 +362,7 @@ export default function NewTestPage() {
 
   // Live Canvas Waveform for Processing Stage
   useEffect(() => {
-    if (localStage !== 'CAMERA_ANALYSIS') return;
+    if (localStage !== 'ANALYSING') return;
     const canvas = waveformCanvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -632,18 +595,8 @@ export default function NewTestPage() {
                   </div>
                 </div>
 
-                {/* Bug #6 fix: only show manual bypass in Rapid Mode (not during live presentations) */}
-                {!sampleCaptured && fastDemo && (
-                  <button
-                    type="button"
-                    className="btn-secondary font-mono"
-                    onClick={handleManualSampleDetected}
-                    style={{ marginTop: '8px', fontSize: '11px' }}
-                  >
-                    <Check size={14} />
-                    <span>SAMPLE APPLIED (CONTINUE IMMEDIATELY)</span>
-                  </button>
-                )}
+
+
               </div>
             </div>
           </div>
@@ -698,53 +651,16 @@ export default function NewTestPage() {
               </div>
 
               {/* Real-time Feature Metrics (+5s thorough scanning) */}
-              <div className="camera-features-panel">
-                <div className="processing-checklist" style={{ marginTop: 0 }}>
-                  <div className={`checklist-item ${processingStep >= 1 ? 'done' : ''}`}>
-                    <span className="check-icon">{processingStep >= 1 ? '✓' : '○'}</span>
-                    <span>Input received</span>
-                  </div>
-                  <div className={`checklist-item ${processingStep >= 2 ? 'done' : processingStep === 1 ? 'active' : ''}`}>
-                    <span className="check-icon">{processingStep >= 2 ? '✓' : processingStep === 1 ? '●' : '○'}</span>
-                    <span>Signal preprocessing</span>
-                  </div>
-                  <div className={`checklist-item ${processingStep >= 3 ? 'done' : processingStep === 2 ? 'active' : ''}`}>
-                    <span className="check-icon">{processingStep >= 3 ? '✓' : processingStep === 2 ? '●' : '○'}</span>
-                    <span>Building sensor fingerprint</span>
-                  </div>
-                  <div className={`checklist-item ${processingStep >= 4 ? 'done' : processingStep === 3 ? 'active' : ''}`}>
-                    <span className="check-icon">{processingStep >= 4 ? '✓' : processingStep === 3 ? '●' : '○'}</span>
-                    <span>Comparing reference fingerprints</span>
-                  </div>
-                  <div className={`checklist-item ${processingStep >= 5 ? 'done' : processingStep === 4 ? 'active' : ''}`}>
-                    <span className="check-icon">{processingStep >= 5 ? '✓' : processingStep === 4 ? '●' : '○'}</span>
-                    <span>Calculating fingerprint similarity</span>
-                  </div>
-                  <div className={`checklist-item ${processingStep >= 6 ? 'done' : processingStep === 5 ? 'active' : ''}`}>
-                    <span className="check-icon">{processingStep >= 6 ? '✓' : processingStep === 5 ? '●' : '○'}</span>
-                    <span>Calculating confidence</span>
-                  </div>
-                </div>
-
-                {/* Progress Bar & Multi-Channel Spectral Waveform */}
-                <div className="waveform-container" style={{ marginTop: '16px' }}>
-                  <div className="waveform-header font-mono">
-                    <span>GAS SENSOR ARRAY 1, 2, 3 SPECTRAL SYNTHESIS</span>
-                    <span className="text-emerald">PROCESSING</span>
-                  </div>
-                  <canvas
-                    ref={waveformCanvasRef}
-                    width={420}
-                    height={80}
-                    className="waveform-canvas"
-                  />
-                  <div className="progress-track" style={{ marginTop: '8px' }}>
-                    <div
-                      className="progress-bar-fill"
-                      style={{ width: `${processingProgress}%` }}
-                    />
-                  </div>
-                </div>
+              <div className="camera-features-panel" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none' }}>
+                <button
+                  type="button"
+                  className="btn-primary-action font-mono"
+                  style={{ minHeight: '54px', width: '100%', fontSize: '15px' }}
+                  onClick={handleFinishCamera}
+                >
+                  <Camera size={20} />
+                  <span>CAPTURE VISUALS & RUN ANALYSIS</span>
+                </button>
               </div>
             </div>
           </div>
@@ -795,7 +711,8 @@ export default function NewTestPage() {
                 />
               </div>
 
-              {/* Step indicators */}
+            {/* Step indicators */}
+            <div style={{ width: '100%', maxWidth: '520px', padding: '0 8px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px' }}>
                 {analysingSteps.map((_, i) => (
                   <div
@@ -812,28 +729,47 @@ export default function NewTestPage() {
               </div>
             </div>
 
-            {/* Processing checklist */}
-            <div style={{ width: '100%', maxWidth: '420px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              {analysingSteps.map((step, i) => (
-                <div
-                  key={i}
-                  className="font-mono"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    fontSize: '11px',
-                    color: i < analysingStep ? 'var(--teal)' : i === analysingStep ? 'var(--text)' : 'var(--text-3, var(--text-2))',
-                    opacity: i > analysingStep + 1 ? 0.35 : 1,
-                    transition: 'color 0.4s ease, opacity 0.4s ease',
-                  }}
-                >
-                  <span style={{ fontSize: '13px' }}>
-                    {i < analysingStep ? '✓' : i === analysingStep ? '●' : '○'}
-                  </span>
-                  <span>{step}</span>
+            {/* Checklist & Waveform (Moved from CAMERA_ANALYSIS) */}
+            <div style={{ width: '100%', maxWidth: '520px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div className="processing-checklist" style={{ marginTop: 0 }}>
+                <div className={`checklist-item ${analysingProgress >= 10 ? 'done' : ''}`}>
+                  <span className="check-icon">{analysingProgress >= 10 ? '✓' : '○'}</span>
+                  <span>Input received</span>
                 </div>
-              ))}
+                <div className={`checklist-item ${analysingProgress >= 30 ? 'done' : analysingProgress >= 10 ? 'active' : ''}`}>
+                  <span className="check-icon">{analysingProgress >= 30 ? '✓' : analysingProgress >= 10 ? '●' : '○'}</span>
+                  <span>Signal preprocessing</span>
+                </div>
+                <div className={`checklist-item ${analysingProgress >= 50 ? 'done' : analysingProgress >= 30 ? 'active' : ''}`}>
+                  <span className="check-icon">{analysingProgress >= 50 ? '✓' : analysingProgress >= 30 ? '●' : '○'}</span>
+                  <span>Building sensor fingerprint</span>
+                </div>
+                <div className={`checklist-item ${analysingProgress >= 70 ? 'done' : analysingProgress >= 50 ? 'active' : ''}`}>
+                  <span className="check-icon">{analysingProgress >= 70 ? '✓' : analysingProgress >= 50 ? '●' : '○'}</span>
+                  <span>Comparing reference fingerprints</span>
+                </div>
+                <div className={`checklist-item ${analysingProgress >= 90 ? 'done' : analysingProgress >= 70 ? 'active' : ''}`}>
+                  <span className="check-icon">{analysingProgress >= 90 ? '✓' : analysingProgress >= 70 ? '●' : '○'}</span>
+                  <span>Calculating fingerprint similarity</span>
+                </div>
+                <div className={`checklist-item ${analysingProgress >= 100 ? 'done' : analysingProgress >= 90 ? 'active' : ''}`}>
+                  <span className="check-icon">{analysingProgress >= 100 ? '✓' : analysingProgress >= 90 ? '●' : '○'}</span>
+                  <span>Calculating confidence</span>
+                </div>
+              </div>
+
+              <div className="waveform-container">
+                <div className="waveform-header font-mono">
+                  <span>GAS SENSOR ARRAY 1, 2, 3 SPECTRAL SYNTHESIS</span>
+                  <span className="text-emerald">PROCESSING</span>
+                </div>
+                <canvas
+                  ref={waveformCanvasRef}
+                  width={420}
+                  height={80}
+                  className="waveform-canvas"
+                />
+              </div>
             </div>
 
             <div className="font-mono" style={{ fontSize: '10px', color: 'var(--text-2)', textAlign: 'center', marginTop: '4px' }}>

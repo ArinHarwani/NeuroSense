@@ -6,7 +6,6 @@ const STORAGE_KEY_SETTINGS = 'narcosense_settings';
 export interface AppSettings {
   applicationName: string;
   demoMode: boolean;
-  fastDemo: boolean;
   confidenceThreshold: number;
   displayThreshold: number;
   cameraEnabled: boolean;
@@ -17,7 +16,6 @@ export interface AppSettings {
 const DEFAULT_SETTINGS: AppSettings = {
   applicationName: 'NarcoSense',
   demoMode: true,
-  fastDemo: false,
   confidenceThreshold: 70,
   displayThreshold: 50,
   cameraEnabled: true,

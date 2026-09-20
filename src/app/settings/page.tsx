@@ -23,13 +23,11 @@ import {
 } from 'lucide-react';
 
 export default function SettingsPage() {
-  const { fastDemo, toggleFastDemo } = useTestWorkflow();
   const [activeTab, setActiveTab] = useState<'general' | 'device' | 'camera' | 'profiles'>('general');
 
   const [settings, setSettings] = useState<AppSettings>({
     applicationName: 'NarcoSense',
     demoMode: true,
-    fastDemo: false,
     confidenceThreshold: 70,
     displayThreshold: 50,
     cameraEnabled: true,
@@ -64,9 +62,6 @@ export default function SettingsPage() {
 
   const handleSaveSettings = () => {
     saveAppSettings(settings);
-    if (settings.fastDemo !== fastDemo) {
-      toggleFastDemo();
-    }
     setSavedSuccess(true);
     setTimeout(() => setSavedSuccess(false), 2000);
   };
@@ -272,18 +267,7 @@ export default function SettingsPage() {
               />
             </div>
 
-            <div className="settings-toggle-row">
-              <div>
-                <span className="toggle-label font-headline">RAPID TEST MODE</span>
-                <span className="toggle-sub">Shorten sensor synthesis and optical analysis to 1–2 seconds.</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={settings.fastDemo}
-                onChange={(e) => setSettings({ ...settings, fastDemo: e.target.checked })}
-                className="settings-checkbox"
-              />
-            </div>
+
           </div>
 
           <div className="dashboard-card">
