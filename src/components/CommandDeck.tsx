@@ -1,5 +1,4 @@
 import React from 'react';
-import { DemoBadge } from './DemoBadge';
 
 interface CommandDeckProps {
   title?: string;
@@ -7,7 +6,6 @@ interface CommandDeckProps {
   sessionId?: string;
   countdownSeconds?: number;
   inspectorName?: string;
-  showDemo?: boolean;
 }
 
 export function CommandDeck({
@@ -16,7 +14,6 @@ export function CommandDeck({
   sessionId,
   countdownSeconds,
   inspectorName,
-  showDemo = true,
 }: CommandDeckProps) {
   const isUrgent = typeof countdownSeconds === 'number' && countdownSeconds <= 10;
 
@@ -83,8 +80,6 @@ export function CommandDeck({
             {stepText}
           </span>
         )}
-
-        {showDemo && <DemoBadge />}
 
         {typeof countdownSeconds === 'number' && (
           <span

@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from '@/context/SessionContext';
-import { DemoBadge } from '@/components/DemoBadge';
 
 export default function ConfirmPage() {
   const router = useRouter();
@@ -53,7 +52,20 @@ export default function ConfirmPage() {
         >
           NARCOSENSE
         </span>
-        <DemoBadge />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--teal)' }} />
+          <span
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '11px',
+              color: 'var(--teal)',
+              fontWeight: 600,
+              letterSpacing: '0.08em',
+            }}
+          >
+            SYSTEM READY
+          </span>
+        </div>
       </header>
 
       {/* Telemetry Canvas */}

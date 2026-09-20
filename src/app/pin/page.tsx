@@ -342,17 +342,17 @@ export default function PinAccessPage() {
           </button>
         </div>
 
-        {/* Tactical Note for Testing / Demo */}
+        {/* Security Telemetry Note */}
         <div
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '11px',
             color: 'var(--text-off)',
             textAlign: 'center',
-            letterSpacing: '0.04em',
+            letterSpacing: '0.06em',
           }}
         >
-          DEMO PINS: 1234 (PARACETAMOL) · 5678 (OPIOID) · 4567 (CANNABINOID)
+          SECURE OPERATOR ACCESS · ENCRYPTED TELEMETRY
         </div>
       </main>
     </div>

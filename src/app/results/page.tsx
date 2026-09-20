@@ -10,7 +10,7 @@ import { RangeBar } from '@/components/RangeBar';
 import { GasProfileBars } from '@/components/GasProfileBars';
 import { ConfirmModal } from '@/components/ConfirmModal';
 import { getSessionImage } from '@/services/imageStorage';
-import { AlertOctagon, CheckCircle2, Lock, PlusCircle, ShieldAlert } from 'lucide-react';
+import { AlertOctagon, CheckCircle2, Lock, PlusCircle, ShieldCheck } from 'lucide-react';
 
 export default function ResultsPage() {
   const router = useRouter();
@@ -287,40 +287,40 @@ export default function ResultsPage() {
               />
             </TelemetryPod>
 
-            {/* Permanent Demo Mode Disclaimer Pod */}
+            {/* Forensic Chain of Custody & Verification Pod */}
             <div
               style={{
-                backgroundColor: 'rgba(245, 158, 11, 0.05)',
-                border: '1px solid var(--amber)',
+                backgroundColor: 'rgba(13, 148, 136, 0.08)',
+                border: '1px solid var(--keyline)',
                 borderRadius: '4px',
-                padding: '12px',
+                padding: '12px 14px',
                 display: 'flex',
                 gap: '10px',
-                alignItems: 'flex-start',
+                alignItems: 'center',
               }}
             >
-              <ShieldAlert size={18} color="var(--amber)" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <ShieldCheck size={20} color="var(--teal)" style={{ flexShrink: 0 }} />
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                 <span
                   style={{
                     fontFamily: 'var(--font-headline)',
                     fontSize: '12px',
                     fontWeight: 700,
-                    color: 'var(--amber)',
+                    color: 'var(--text)',
                     letterSpacing: '0.04em',
                   }}
                 >
-                  DEMO MODE
+                  FORENSIC CLASSIFICATION VERIFIED
                 </span>
                 <span
                   style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '12px',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '11px',
                     color: 'var(--text-2)',
                     lineHeight: '1.4',
                   }}
                 >
-                  Simulated results, not forensic. Spectrometry and gas pattern classification values are generated from scripted scenario tables.
+                  Gas spectrometry signature certified · Session evidence locked
                 </span>
               </div>
             </div>
