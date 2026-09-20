@@ -104,14 +104,15 @@ export default function ResultsPage() {
           <span
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '14px',
+              fontSize: '15px',
               fontWeight: 700,
-              backgroundColor: 'rgba(0, 0, 0, 0.25)',
-              padding: '2px 8px',
-              borderRadius: '2px',
+              backgroundColor: 'rgba(0, 0, 0, 0.3)',
+              padding: '3px 10px',
+              borderRadius: '3px',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
             }}
           >
-            {result.confidence_min}–{result.confidence_max}% CONF
+            {result.confidence_score || result.confidence_min}% CONF
           </span>
         </div>
 
@@ -277,9 +278,13 @@ export default function ResultsPage() {
               </div>
             </TelemetryPod>
 
-            {/* Confidence Range Pod */}
-            <TelemetryPod label="CONFIDENCE RANGE">
-              <RangeBar min={result.confidence_min} max={result.confidence_max} />
+            {/* Confidence Score & Range Pod */}
+            <TelemetryPod label="CONFIDENCE SCORE">
+              <RangeBar
+                min={result.confidence_min}
+                max={result.confidence_max}
+                score={result.confidence_score}
+              />
             </TelemetryPod>
 
             {/* Permanent Demo Mode Disclaimer Pod */}

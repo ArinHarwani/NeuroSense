@@ -23,6 +23,7 @@ export interface ScenarioData {
   legality: LegalityType;
   confidence_min: number;
   confidence_max: number;
+  confidence_score?: number;
   gas_profile: GasProfile;
 }
 
