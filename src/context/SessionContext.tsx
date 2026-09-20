@@ -120,6 +120,13 @@ export function SessionProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    if (pathname === '/processing') {
+      if (!session || session.status !== 'UNLOCKED') {
+        router.replace('/');
+      }
+      return;
+    }
+
     if (pathname === '/results') {
       if (!session || session.status !== 'UNLOCKED') {
         router.replace('/');

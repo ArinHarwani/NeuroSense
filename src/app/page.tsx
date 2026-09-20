@@ -69,45 +69,175 @@ export default function ConfirmPage() {
       </header>
 
       {/* Telemetry Canvas */}
-      <main className="telemetry-canvas" style={{ justifyContent: 'center', gap: '20px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <span
+      <main className="telemetry-canvas" style={{ justifyContent: 'center', gap: '18px' }}>
+        {/* Terminal Stage 1 Card matching specification */}
+        <div
+          style={{
+            backgroundColor: '#0c1017',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
+            borderRadius: '16px',
+            padding: '24px 20px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.6)',
+          }}
+        >
+          {/* Card Header */}
+          <div>
+            <div
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '15px',
+                fontWeight: 700,
+                color: 'var(--text)',
+                letterSpacing: '0.12em',
+              }}
+            >
+              NARCOSENSE
+            </div>
+            <div
+              style={{
+                color: 'rgba(255, 255, 255, 0.25)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '12px',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                margin: '6px 0 10px 0',
+                userSelect: 'none',
+              }}
+            >
+              ------------------------------------------------------------
+            </div>
+            <div
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '13px',
+                fontWeight: 700,
+                color: '#10b981',
+                letterSpacing: '0.08em',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
+              <span
+                style={{
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  backgroundColor: '#10b981',
+                  boxShadow: '0 0 10px #10b981',
+                  display: 'inline-block',
+                }}
+              />
+              SYSTEM STATUS: READY
+            </div>
+          </div>
+
+          {/* Module List */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', margin: '4px 0' }}>
+            {/* Breath Analysis Module */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+              <span
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: 'var(--text)',
+                }}
+              >
+                Breath Analysis Module
+              </span>
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '13px',
+                  color: '#10b981',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  fontWeight: 600,
+                }}
+              >
+                • Ready
+              </span>
+            </div>
+
+            {/* Camera Module */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+              <span
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: 'var(--text)',
+                }}
+              >
+                Camera Module
+              </span>
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '13px',
+                  color: '#10b981',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  fontWeight: 600,
+                }}
+              >
+                • Ready
+              </span>
+            </div>
+
+            {/* AI Engine */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+              <span
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: 'var(--text)',
+                }}
+              >
+                AI Engine
+              </span>
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '13px',
+                  color: '#10b981',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  fontWeight: 600,
+                }}
+              >
+                • Ready
+              </span>
+            </div>
+          </div>
+
+          {/* Direct [ START TEST ] Button per Image 1 */}
+          <button
+            type="button"
+            className="btn-primary"
+            onClick={handleConfirm}
+            disabled={isSubmitting}
             style={{
+              width: '100%',
+              height: '52px',
               fontFamily: 'var(--font-mono)',
-              fontSize: '11px',
-              fontWeight: 600,
-              color: 'var(--text-2)',
-              letterSpacing: '0.08em',
-            }}
-          >
-            STEP 1 / 4
-          </span>
-
-          <h1
-            style={{
-              fontFamily: 'var(--font-headline)',
-              fontSize: '26px',
-              lineHeight: '32px',
               fontWeight: 700,
-              color: 'var(--text)',
-              textTransform: 'uppercase',
-              letterSpacing: '-0.01em',
+              letterSpacing: '0.08em',
+              fontSize: '14px',
+              borderRadius: '8px',
+              marginTop: '8px',
             }}
           >
-            Confirm Sample Input
-          </h1>
-
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '16px',
-              lineHeight: '24px',
-              color: 'var(--text-2)',
-              marginTop: '4px',
-            }}
-          >
-            Confirm that the breath sample has been taken before continuing.
-          </p>
+            {isSubmitting ? '[ INITIALIZING... ]' : '[ START TEST ]'}
+          </button>
         </div>
 
         {/* Dual Telemetry Pods */}
@@ -117,7 +247,7 @@ export default function ConfirmPage() {
             <span
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '20px',
+                fontSize: '16px',
                 fontWeight: 700,
                 color: 'var(--teal)',
               }}
@@ -131,7 +261,7 @@ export default function ConfirmPage() {
             <span
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '20px',
+                fontSize: '16px',
                 fontWeight: 700,
                 color: 'var(--text)',
               }}
@@ -147,7 +277,7 @@ export default function ConfirmPage() {
             backgroundColor: 'var(--bg-recessed)',
             border: '1px solid var(--keyline)',
             borderRadius: '4px',
-            padding: '12px 14px',
+            padding: '10px 14px',
             display: 'flex',
             alignItems: 'center',
             gap: '10px',
@@ -164,30 +294,27 @@ export default function ConfirmPage() {
           <span
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '12px',
+              fontSize: '11px',
               color: 'var(--text-2)',
               letterSpacing: '0.04em',
             }}
           >
-            SENSOR CHAMBER PURGED & READY
+            STAGE 1 · SENSOR CHAMBER PURGED & READY
           </span>
         </div>
       </main>
 
-      {/* Action Shelf (80px) */}
-      <footer className="action-shelf">
-        <button
-          type="button"
-          className="btn-primary"
-          onClick={handleConfirm}
-          disabled={isSubmitting}
-          style={{
-            width: '100%',
-            height: '56px',
-          }}
-        >
-          {isSubmitting ? 'SESSION STARTED...' : 'CONFIRM: INPUT TAKEN'}
-        </button>
+      {/* Action Shelf */}
+      <footer className="action-shelf" style={{ justifyContent: 'space-between', padding: '0 16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: 'var(--teal)' }} />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-2)', letterSpacing: '0.04em' }}>
+            BLE: RPi-4B (STANDBY)
+          </span>
+        </div>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-off)', letterSpacing: '0.04em' }}>
+          DEMO BUILD v2.4
+        </span>
       </footer>
     </div>
   );

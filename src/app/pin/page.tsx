@@ -85,9 +85,9 @@ export default function PinAccessPage() {
 
         if (result.success) {
           setPinStatus('success');
-          // Short nominal feedback flash before transition
+          // Short nominal feedback flash before transition to acquisition/analysis
           setTimeout(() => {
-            router.push('/results');
+            router.push('/processing');
           }, 350);
         } else {
           setPinStatus('error');
