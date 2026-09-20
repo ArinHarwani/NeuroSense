@@ -712,7 +712,6 @@ export default function NewTestPage() {
               </div>
 
             {/* Step indicators */}
-            <div style={{ width: '100%', maxWidth: '520px', padding: '0 8px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px' }}>
                 {analysingSteps.map((_, i) => (
                   <div
