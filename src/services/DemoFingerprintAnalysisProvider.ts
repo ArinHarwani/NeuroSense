@@ -80,10 +80,14 @@ export class DemoFingerprintAnalysisProvider implements AnalysisProvider {
    */
   public async analyze(testId: string, input: AnalysisInput): Promise<AnalysisResult> {
     const code = input.code || '0001';
-    const profile = this.getProfileByCode(code);
+    let profile = this.getProfileByCode(code);
 
     if (!profile) {
-      throw new Error(`No active reference profile found for code: ${code}`);
+      // Fallback to a safe drug profile (Paracetamol) if the passcode is unknown to prevent demo crashes
+      profile = this.profiles[0];
+      if (!profile) {
+        throw new Error(`No active reference profile found for code: ${code}`);
+      }
     }
 
     const isInconclusive = profile.code === '9000';

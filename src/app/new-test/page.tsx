@@ -184,27 +184,28 @@ export default function NewTestPage() {
     setCountdown(15);
     setSampleCaptured(false);
 
+    let currentCount = 15;
     const timer = setInterval(() => {
-      setCountdown((prev) => {
-        // Fluctuate sensors during breathing/spraying window
-        setSensorWaveFluctuation({
-          s1: Number((0.12 + Math.random() * 0.45).toFixed(2)),
-          s2: Number((0.05 + Math.random() * 0.25).toFixed(2)),
-          s3: Number((0.08 + Math.random() * 0.50).toFixed(2)),
-        });
-
-        if (prev <= 1) {
-          clearInterval(timer);
-          // 15 seconds elapsed: breath recorded as input!
-          setSampleCaptured(true);
-          triggerCapture();
-          setTimeout(() => {
-            setLocalStage('CAMERA_ANALYSIS');
-          }, 600);
-          return 0;
-        }
-        return prev - 1;
+      currentCount -= 1;
+      
+      // Fluctuate sensors during breathing/spraying window
+      setSensorWaveFluctuation({
+        s1: Number((0.12 + Math.random() * 0.45).toFixed(2)),
+        s2: Number((0.05 + Math.random() * 0.25).toFixed(2)),
+        s3: Number((0.08 + Math.random() * 0.50).toFixed(2)),
       });
+
+      if (currentCount <= 0) {
+        clearInterval(timer);
+        setCountdown(0);
+        setSampleCaptured(true);
+        triggerCapture();
+        setTimeout(() => {
+          setLocalStage('CAMERA_ANALYSIS');
+        }, 600);
+      } else {
+        setCountdown(currentCount);
+      }
     }, 1000);
 
     return () => clearInterval(timer);
