@@ -1,0 +1,81 @@
+{
+  "profiles": [
+    {
+      "code": "0001",
+      "displayName": "Paracetamol",
+      "scientificName": "Acetaminophen",
+      "fingerprint": {
+        "gasSensor1": 0.68,
+        "gasSensor2": 0.12,
+        "gasSensor3": 0.74
+      },
+      "active": true
+    },
+    {
+      "code": "0002",
+      "displayName": "Ibuprofen",
+      "scientificName": "Ibuprofen",
+      "fingerprint": {
+        "gasSensor1": 0.52,
+        "gasSensor2": 0.19,
+        "gasSensor3": 0.61
+      },
+      "active": true
+    },
+    {
+      "code": "0003",
+      "displayName": "Aspirin",
+      "scientificName": "Acetylsalicylic acid",
+      "fingerprint": {
+        "gasSensor1": 0.59,
+        "gasSensor2": 0.14,
+        "gasSensor3": 0.67
+      },
+      "active": true
+    },
+    {
+      "code": "0004",
+      "displayName": "Caffeine",
+      "scientificName": "1,3,7-Trimethylxanthine",
+      "fingerprint": {
+        "gasSensor1": 0.43,
+        "gasSensor2": 0.10,
+        "gasSensor3": 0.55
+      },
+      "active": true
+    },
+    {
+      "code": "0005",
+      "displayName": "Dextromethorphan",
+      "scientificName": "Dextromethorphan",
+      "fingerprint": {
+        "gasSensor1": 0.57,
+        "gasSensor2": 0.23,
+        "gasSensor3": 0.63
+      },
+      "active": true
+    },
+    {
+      "code": "9999",
+      "displayName": "Normal",
+      "scientificName": "Normal Reference",
+      "fingerprint": {
+        "gasSensor1": 0.20,
+        "gasSensor2": 0.18,
+        "gasSensor3": 0.24
+      },
+      "active": true
+    },
+    {
+      "code": "9000",
+      "displayName": "Inconclusive",
+      "scientificName": "Inconclusive Reference",
+      "fingerprint": {
+        "gasSensor1": 0.45,
+        "gasSensor2": 0.42,
+        "gasSensor3": 0.47
+      },
+      "active": true
+    }
+  ]
+}

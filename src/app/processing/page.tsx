@@ -667,7 +667,7 @@ export default function ProcessingPage() {
                     letterSpacing: '0.06em',
                   }}
                 >
-                  DEMO MODE: REFERENCE SPECTRAL PROFILE
+                  REFERENCE SPECTRAL PROFILE
                 </span>
                 <span
                   style={{
@@ -796,7 +796,7 @@ export default function ProcessingPage() {
           TOTAL SEQUENCE: ~12s
         </span>
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: '#10b981' }}>
-          {currentStage === 2 ? 'ACQUIRING TRANSDUCER SIGNALS' : 'DEMO MODE INFERENCE'}
+          {currentStage === 2 ? 'ACQUIRING TRANSDUCER SIGNALS' : 'SPECTRAL PATTERN INFERENCE'}
         </span>
       </footer>
     </div>

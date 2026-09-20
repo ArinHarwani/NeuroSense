@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import { SessionProvider } from '@/context/SessionContext';
+import { TestWorkflowProvider } from '@/context/TestWorkflowContext';
+import { NavigationSidebar } from '@/components/NavigationSidebar';
+import { HeaderBar } from '@/components/HeaderBar';
 
 export const metadata: Metadata = {
-  title: 'NarcoSense | Field Screening Instrument',
-  description: 'Rugged, decisive narcotics field screening instrument web application.',
+  title: 'NarcoSense | AI-Assisted Breath Screening Platform',
+  description: 'First-round hackathon prototype for multimodal AI-assisted breath and visual narcotics screening.',
   manifest: '/manifest.json',
 };
 
@@ -16,6 +18,9 @@ export const viewport: Viewport = {
   themeColor: '#0F172A',
 };
 
+import { SessionProvider } from '@/context/SessionContext';
+import { OfficerLoginModal } from '@/components/OfficerLoginModal';
+
 export default function RootLayout({
   children,
 }: {
@@ -24,7 +29,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider>
+          <TestWorkflowProvider>
+            <OfficerLoginModal />
+            <div className="app-shell">
+              <NavigationSidebar />
+              <div className="app-main-content">
+                <HeaderBar />
+                <main className="app-page-body">{children}</main>
+              </div>
+            </div>
+          </TestWorkflowProvider>
+        </SessionProvider>
       </body>
     </html>
   );

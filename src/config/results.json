@@ -1,0 +1,98 @@
+{
+  "1001": {
+    "code": "1001",
+    "title": "Reference Pattern A",
+    "status": "POSITIVE",
+    "confidence": 87,
+    "chemicalScore": 87,
+    "visualScore": 68,
+    "combinedScore": 81,
+    "probabilities": {
+      "Reference Pattern A": 87,
+      "Reference Pattern B": 5,
+      "Normal": 4,
+      "Unknown": 4
+    },
+    "summary": "Reference pattern A strongly matched spectral signature.",
+    "explanation": "Gas chromatography and visual micro-features align with target reference pattern profile A.",
+    "modelVersion": "DEMO-1.0",
+    "mode": "DEMO"
+  },
+  "1002": {
+    "code": "1002",
+    "title": "Reference Pattern B",
+    "status": "POSITIVE",
+    "confidence": 82,
+    "chemicalScore": 82,
+    "visualScore": 72,
+    "combinedScore": 79,
+    "probabilities": {
+      "Reference Pattern A": 7,
+      "Reference Pattern B": 82,
+      "Normal": 5,
+      "Unknown": 6
+    },
+    "summary": "Reference pattern B signature identified with high confidence.",
+    "explanation": "Peak resonance detected in secondary hydrocarbon bands matching synthetic profile B.",
+    "modelVersion": "DEMO-1.0",
+    "mode": "DEMO"
+  },
+  "1003": {
+    "code": "1003",
+    "title": "Reference Pattern C",
+    "status": "POSITIVE",
+    "confidence": 79,
+    "chemicalScore": 79,
+    "visualScore": 65,
+    "combinedScore": 75,
+    "probabilities": {
+      "Reference Pattern A": 6,
+      "Reference Pattern B": 8,
+      "Reference Pattern C": 79,
+      "Normal": 4,
+      "Unknown": 3
+    },
+    "summary": "Reference pattern C verified under controlled parameters.",
+    "explanation": "Volatile organic spectral curve corresponds to calibrated reference pattern C.",
+    "modelVersion": "DEMO-1.0",
+    "mode": "DEMO"
+  },
+  "9999": {
+    "code": "9999",
+    "title": "Normal",
+    "status": "NEGATIVE",
+    "confidence": 94,
+    "chemicalScore": 94,
+    "visualScore": 89,
+    "combinedScore": 92,
+    "probabilities": {
+      "Reference Pattern A": 2,
+      "Reference Pattern B": 1,
+      "Normal": 94,
+      "Unknown": 3
+    },
+    "summary": "Clean negative sample. Baseline environmental spectrum only.",
+    "explanation": "No target narcotic or controlled substance signatures detected in the sample chamber.",
+    "modelVersion": "DEMO-1.0",
+    "mode": "DEMO"
+  },
+  "9000": {
+    "code": "9000",
+    "title": "Inconclusive",
+    "status": "INCONCLUSIVE",
+    "confidence": 46,
+    "chemicalScore": 46,
+    "visualScore": 52,
+    "combinedScore": 48,
+    "probabilities": {
+      "Reference Pattern A": 32,
+      "Reference Pattern B": 28,
+      "Normal": 24,
+      "Unknown": 16
+    },
+    "summary": "The available prototype signals do not support a high-confidence classification.",
+    "explanation": "Transducer signals exhibit overlapping variance across multiple reference patterns. Resampling recommended.",
+    "modelVersion": "DEMO-1.0",
+    "mode": "DEMO"
+  }
+}
